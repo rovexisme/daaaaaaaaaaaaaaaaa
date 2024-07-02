@@ -1,26 +1,3 @@
-notificationGui = Instance.new("ScreenGui")
-notificationGui.Name = "NotificationGui"
-notificationGui.Parent = game.Players.LocalPlayer.PlayerGui
-local notificationFrame = Instance.new("Frame")
-notificationFrame.Size = UDim2.new(0, 200, 0, 50)
-notificationFrame.Position = UDim2.new(0, 10, 1, -60)
-notificationFrame.AnchorPoint = Vector2.new(0, 1)
-notificationFrame.BackgroundColor3 = Color3.new(0, 0, 0)
-notificationFrame.BackgroundTransparency = 0.0
-notificationFrame.BorderSizePixel = 1
-notificationFrame.BorderColor3 = Color3.new(1, 1, 1)
-notificationFrame.Parent = notificationGui
-local notificationText = Instance.new("TextLabel")
-notificationText.Size = UDim2.new(1, -10, 1, -10)
-notificationText.Position = UDim2.new(0, 5, 0, 5)
-notificationText.BackgroundTransparency = 1
-notificationText.Text = "made by weak sa il fut pe  yusan "
-notificationText.TextColor3 = Color3.new(1, 1, 1)
-notificationText.TextSize = 14
-notificationText.Font = Enum.Font.SourceSansBold
-notificationText.TextWrapped = true
-notificationText.Parent = notificationFrame
-
 
 local Players = game:GetService("Players"):GetChildren()
 local RunService = game:GetService("RunService")
