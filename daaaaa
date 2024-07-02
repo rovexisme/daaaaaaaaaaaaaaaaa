@@ -1,0 +1,281 @@
+notificationGui = Instance.new("ScreenGui")
+notificationGui.Name = "NotificationGui"
+notificationGui.Parent = game.Players.LocalPlayer.PlayerGui
+local notificationFrame = Instance.new("Frame")
+notificationFrame.Size = UDim2.new(0, 200, 0, 50)
+notificationFrame.Position = UDim2.new(0, 10, 1, -60)
+notificationFrame.AnchorPoint = Vector2.new(0, 1)
+notificationFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+notificationFrame.BackgroundTransparency = 0.0
+notificationFrame.BorderSizePixel = 1
+notificationFrame.BorderColor3 = Color3.new(1, 1, 1)
+notificationFrame.Parent = notificationGui
+local notificationText = Instance.new("TextLabel")
+notificationText.Size = UDim2.new(1, -10, 1, -10)
+notificationText.Position = UDim2.new(0, 5, 0, 5)
+notificationText.BackgroundTransparency = 1
+notificationText.Text = "made by weak sa il fut pe  yusan "
+notificationText.TextColor3 = Color3.new(1, 1, 1)
+notificationText.TextSize = 14
+notificationText.Font = Enum.Font.SourceSansBold
+notificationText.TextWrapped = true
+notificationText.Parent = notificationFrame
+
+
+local Players = game:GetService("Players"):GetChildren()
+local RunService = game:GetService("RunService")
+local highlight = Instance.new("Highlight")
+highlight.Name = "Highlight"
+
+for i, v in pairs(Players) do
+    repeat wait() until v.Character
+    if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+        local highlightClone = highlight:Clone()
+        highlightClone.Adornee = v.Character
+        highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+        highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+        highlightClone.Name = "Highlight"
+    end
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    repeat wait() until player.Character
+    if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+        local highlightClone = highlight:Clone()
+        highlightClone.Adornee = player.Character
+        highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
+        highlightClone.Name = "Highlight"
+    end
+end)
+
+game.Players.PlayerRemoving:Connect(function(playerRemoved)
+    playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
+end)
+
+RunService.Heartbeat:Connect(function()
+    for i, v in pairs(Players) do
+        repeat wait() until v.Character
+        if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+            local highlightClone = highlight:Clone()
+            highlightClone.Adornee = v.Character
+            highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+            highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            highlightClone.Name = "Highlight"
+            task.wait()
+        end
+end
+end)
+
+
+local Players = game:GetService("Players"):GetChildren()
+local RunService = game:GetService("RunService")
+local highlight = Instance.new("Highlight")
+highlight.Name = "Highlight"
+
+for i, v in pairs(Players) do
+    repeat wait() until v.Character
+    if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+        local highlightClone = highlight:Clone()
+        highlightClone.Adornee = v.Character
+        highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+        highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+        highlightClone.Name = "Highlight"
+    end
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    repeat wait() until player.Character
+    if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+        local highlightClone = highlight:Clone()
+        highlightClone.Adornee = player.Character
+        highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
+        highlightClone.Name = "Highlight"
+    end
+end)
+
+game.Players.PlayerRemoving:Connect(function(playerRemoved)
+    playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
+end)
+
+RunService.Heartbeat:Connect(function()
+    for i, v in pairs(Players) do
+        repeat wait() until v.Character
+        if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+            local highlightClone = highlight:Clone()
+            highlightClone.Adornee = v.Character
+            highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+            highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            highlightClone.Name = "Highlight"
+            task.wait()
+        end
+end
+end)
+
+local c = workspace.CurrentCamera
+local ps = game:GetService("Players")
+local lp = ps.LocalPlayer
+local rs = game:GetService("RunService")
+
+local function ftool(cr)
+    for _, b in next, cr:GetChildren() do
+        if b.ClassName == 'Tool' then
+            return tostring(b.Name)
+        end
+    end
+    return 'empty'
+end
+
+local function esp(p, cr)
+    local h = cr:WaitForChild("Humanoid")
+    local hrp = cr:WaitForChild("HumanoidRootPart")
+
+    local text = Drawing.new('Text')
+    text.Visible = false
+    text.Center = true
+    text.Outline = true
+    text.Color = Color3.new(1, 1, 1)
+    text.Font = 2
+    text.Size = 13
+
+    local c1, c2, c3
+
+    local function dc()
+        text.Visible = false
+        text:Remove()
+        if c3 then
+            c1:Disconnect()
+            c2:Disconnect()
+            c3:Disconnect()
+            c1, c2, c3 = nil, nil, nil
+        end
+    end
+
+    c2 = cr.AncestryChanged:Connect(function(_, parent)
+        if not parent then
+            dc()
+        end
+    end)
+
+    c3 = h.HealthChanged:Connect(function(v)
+        if v <= 0 or h:GetState() == Enum.HumanoidStateType.Dead then
+            dc()
+        end
+    end)
+
+    c1 = rs.Heartbeat:Connect(function()
+        local hrp_pos, hrp_os = c:WorldToViewportPoint(hrp.Position)
+        if hrp_os then
+            -- Adjust Y position to be lower (towards feet)
+            local text_position = Vector2.new(hrp_pos.X, hrp_pos.Y + 50)  -- Adjust the offset as needed
+            text.Position = text_position
+            text.Text = tostring(ftool(cr))
+            text.Visible = true
+        else
+            text.Visible = false
+        end
+    end)
+end
+
+local function p_added(p)
+    if p.Character then
+        esp(p, p.Character)
+    end
+    p.CharacterAdded:Connect(function(cr)
+        esp(p, cr)
+    end)
+end
+
+for _, b in next, ps:GetPlayers() do
+    if b ~= lp then
+        p_added(b)
+    end
+end
+
+ps.PlayerAdded:Connect(function(p)
+    if p ~= lp then
+        p_added(p)
+    end
+end)
+
+local c = workspace.CurrentCamera
+local ps = game:GetService("Players")
+local lp = ps.LocalPlayer
+local rs = game:GetService("RunService")
+
+local function getdistancefc(part)
+    return (part.Position - c.CFrame.Position).Magnitude
+end
+
+local function esp(p, cr)
+    local h = cr:WaitForChild("Humanoid")
+    local hrp = cr:WaitForChild("HumanoidRootPart")
+
+    local text = Drawing.new("Text")
+    text.Visible = false
+    text.Center = true
+    text.Outline = true
+    text.Font = 2
+    text.Color = Color3.fromRGB(255, 255, 255)
+    text.Size = 13
+
+    local c1
+    local c2
+    local c3
+
+    local function dc()
+        text.Visible = false
+        text:Remove()
+        if c1 then
+            c1:Disconnect()
+            c1 = nil
+        end
+        if c2 then
+            c2:Disconnect()
+            c2 = nil
+        end
+        if c3 then
+            c3:Disconnect()
+            c3 = nil
+        end
+    end
+
+    c2 = cr.AncestryChanged:Connect(function(_, parent)
+        if not parent then
+            dc()
+        end
+    end)
+
+    c3 = h.HealthChanged:Connect(function(v)
+        if (v <= 0) or (h:GetState() == Enum.HumanoidStateType.Dead) then
+            dc()
+        end
+    end)
+
+    c1 = rs.RenderStepped:Connect(function()
+        local hrp_pos, hrp_os = c:WorldToViewportPoint(hrp.Position - Vector3.new(0, hrp.Size.Y / 2, 0))  -- Adjust the position to the feet
+        if hrp_os then
+            text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y)
+            text.Text = p.Name .. ' (' .. tostring(math.floor(getdistancefc(hrp))) .. ' ms)'
+            text.Visible = true
+        else
+            text.Visible = false
+        end
+    end)
+end
+
+local function p_added(p)
+    if p.Character then
+        esp(p, p.Character)
+    end
+    p.CharacterAdded:Connect(function(cr)
+        esp(p, cr)
+    end)
+end
+
+for i, p in next, ps:GetPlayers() do
+    if p ~= lp then
+        p_added(p)
+    end
+end
+
+ps.PlayerAdded:Connect(p_added)
